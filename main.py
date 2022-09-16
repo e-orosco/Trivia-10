@@ -23,7 +23,7 @@ print(" => Pondremos a prueba tus conocimientos.\n")
 while iniciar_trivia == True:  #  Mientras iniciar_trivia sea True, repite:
     intentos += 1
     puntaje = 0
-    input(CYAN + "Presiona Enter para continuar \n" + RESET)
+    input(CYAN + "Presiona Enter para continuar: \n" + RESET)
     ### Loading...###
     print('CARGANDO TRIVIA')
     for i in range(0, 6):
@@ -154,7 +154,8 @@ while iniciar_trivia == True:  #  Mientras iniciar_trivia sea True, repite:
             GREEN +
             "\n => ¡Respuesta correcta! La flor de amancaes crece en los valles de Lima. Es de color amarillo intenso y florece en el invierno.  \n"
             + RESET)
-        print(YELLOW + " => ¡Ganaste 20 puntos!\n" + RESET)
+        print(YELLOW + " => ¡Ganaste 20 puntos con esta pregunta!\n" + RESET)
+        print(YELLOW + " => Actualmente tienes:", puntaje, "puntos.\n" + RESET)
 
     elif respuesta_3 == "z":
         puntaje += 5
@@ -163,11 +164,19 @@ while iniciar_trivia == True:  #  Mientras iniciar_trivia sea True, repite:
 
     else:
         puntaje -= 2.5
-        print(
-            RED +
-            "\n => ¡Respuesta incorrecta! (La flor de amancaes es la flor típica y simbolica de Lima). \n"
-            + RESET)
-        print(YELLOW + " => ¡Perdiste 2.5 puntos!" + RESET)
+        print(RED +"\n => ¡Respuesta incorrecta! (La flor de amancaes es la flor típica y simbolica de Lima). \n"+ RESET)
+        print(YELLOW + " => ¡Perdiste 2.5 puntos!" + RESET)  
+        print(YELLOW + " => Actualmente tienes:", puntaje, "puntos.\n" + RESET)
+
+    bonus = input("\n Escribe " + BLUE+"ruleta "+ RESET + "para obtener puntos adicionales: ").lower()
+
+    while bonus not in ("ruleta"):
+        bonus = input(
+            "No escribiste correctamente, intenta nuevamente: ").lower()
+
+    if bonus == "ruleta":
+        bono = random.randint(2, 20)
+    print(BLUE + "\n => Felicidades ganaste", bono, "puntos de bono." + RESET)
 
     print("\n ##### Gracias por participar", nombre, "#####")
     time.sleep(2)  # Espera 2 segundo antes de continuar.
@@ -180,7 +189,7 @@ while iniciar_trivia == True:  #  Mientras iniciar_trivia sea True, repite:
         print(rd.randint(0, 20), end='\r')
         end_time = time.time()
         elapsed_time = end_time - start_time
-
+    puntaje = puntaje + bono
     print('{:.1f}'.format(puntaje), end='\r')
     print('\n')
 
